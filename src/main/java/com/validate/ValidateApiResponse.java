@@ -60,12 +60,12 @@ public class ValidateApiResponse {
 	}
 
 	/*
-	 * This Method will Return True 
+	 * This Method will Return void and assert true 
 	 * When defaultGameFrequency is 300000
 	 */
 	@Test
 	public void shouldReturn300000WhendefaultGameFrequencyValidated() throws JSONException {
-
+		log.info("Validating shouldReturn300000WhendefaultGameFrequencyValidated()");
 		JSONObject str = obj.getJSONObject(Constants.BINGOLOBBYINFORESOURCE);
 		JSONArray arr = str.getJSONArray(Constants.STREAMS);
 
@@ -73,18 +73,18 @@ public class ValidateApiResponse {
 			Long defaultGameFrequency = (Long)arr.getJSONObject(i).get(Constants.DEFAULTGAMEFREQUENCY);
 			Assert.assertTrue(defaultGameFrequency==Constants.THREEHUNDREDTHOUSAND_INT);
 		}
-
+		log.info("Validated shouldReturn300000WhendefaultGameFrequencyValidated()");
 	}
 
 	
 	/*
-	 * This Method will Return True 
+	 * This Method will Return void and assert true 
 	 * When STARTTIME is Future Time Stamp
 	 */
 	
 	@Test
 	public void shouldReturnTrueWhenstartTimeIsFuture() throws JSONException {
-
+		log.info("Validating shouldReturnTrueWhenstartTimeIsFuture()");
 		JSONObject str = obj.getJSONObject(Constants.BINGOLOBBYINFORESOURCE);
 		JSONArray arr = str.getJSONArray(Constants.STREAMS);
 		Timestamp timestamp;
@@ -93,6 +93,7 @@ public class ValidateApiResponse {
 			timestamp = new Timestamp(System.currentTimeMillis());
 			Assert.assertTrue(timestamp.getTime() < startTime);
 		}
+		log.info("Validated shouldReturnTrueWhenstartTimeIsFuture()");
 
 	}
 }
