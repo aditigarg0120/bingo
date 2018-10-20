@@ -35,6 +35,7 @@ public class ValidateApiResponse {
 	
 	
 	static {
+		BasicConfigurator.configure();
 		log.info("Inside Static Block");
 		InputStream input = null;
 		String workspace = System.getProperty("user.dir");
@@ -53,7 +54,6 @@ public class ValidateApiResponse {
 	public static void setUp() throws Exception {
 		log.info("Inside Setup()");
 		GetResponse api = new GetResponse();
-		BasicConfigurator.configure();
 		log.info("Getting Api Response");
 		String ExpectedString = api.GetapiResponse(prop);
 		obj = new JSONObject(ExpectedString);
@@ -70,7 +70,7 @@ public class ValidateApiResponse {
 		JSONArray arr = str.getJSONArray(Constants.STREAMS);
 
 		for (int i = 0; i < arr.length(); i++) {
-			Long defaultGameFrequency = (Long)arr.getJSONObject(i).get(Constants.DEFAULTGAMEFREQUENCY);
+			int defaultGameFrequency = (Integer) arr.getJSONObject(i).get(Constants.DEFAULTGAMEFREQUENCY);
 			Assert.assertTrue(defaultGameFrequency==Constants.THREEHUNDREDTHOUSAND_INT);
 		}
 		log.info("Validated shouldReturn300000WhendefaultGameFrequencyValidated()");
